@@ -1,51 +1,98 @@
 #include <Servo.h>
+#include <avr/sleep.h>
 #define SERVO_DATA_PIN 9
-#define DISTANCE_TRIG_PIN 13
-#define DISTANCE_ECHO_PIN 12
-#define LED_PASSIVE 11
-#define LED_ACTIVE 10
+#define DISTANCE_TRIG_PIN 6
+#define DISTANCE_ECHO_PIN 5
+#define LDR_PIN 2
+#define LED_PASSIVE_PIN 11
+#define LED_ACTIVE_PIN 10
+#define SERVO_INITIAL_DEGREE 90
+#define SERVO_FINAL_DEGREE 30
 
 Servo servoFlush;
 
-int pos = 0;  //servo position
-
 void setup() {
+  Serial.begin(9600);
   pinMode(DISTANCE_TRIG_PIN, OUTPUT);
   pinMode(DISTANCE_ECHO_PIN, INPUT);
-  pinMode(LED_PASSIVE, OUTPUT);
-  pinMode(LED_ACTIVE, OUTPUT);
+  pinMode(LDR_PIN, INPUT);
+  pinMode(LED_PASSIVE_PIN, OUTPUT);
+  pinMode(LED_ACTIVE_PIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, HIGH);
   servoFlush.attach(SERVO_DATA_PIN);  // attaches the servo on pin 9 to the servo object
 }
 
 void loop() {
-  if(!distance_less_than_given_centimeter(5)) {
-    delay(500);
+  Serial.println("======");
+  if (isEnvironmentDark()) {
+    sleep_enable();
+    Serial.println("Sleep enabled! ");
+    attachInterrupt(digitalPinToInterrupt(LDR_PIN), wakeUp, RISING);
+    Serial.println("LDR Pin attached to interrupt! ");
+    set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+    Serial.println("Sleep mode has been set! ");
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(1000);
+    Serial.println("Going to sleep... ");
+    sleep_cpu();
+    Serial.println("Just woke up! ");
+    digitalWrite(LED_BUILTIN, HIGH);
+  } else {
+    boolean is_hand_detected = hand_detected();
+    Serial.print("Hand detected? : ");
+    Serial.println(is_hand_detected == 0 ? "No" : "Yes");
+    if (is_hand_detected) {
+      servoFlush.write(SERVO_FINAL_DEGREE);
+      Serial.print("Final degree : ");
+      Serial.println(SERVO_FINAL_DEGREE);
+      delay(5000);
+      Serial.print("Initial degree : ");
+      servoFlush.write(SERVO_INITIAL_DEGREE);
+      Serial.println(SERVO_INITIAL_DEGREE);
+      delay(1000);
+    }
   }
-  operate(3500);
+  delay(500);
 }
 
-void operate(int wait_time) {
-  servoFlush.write(120);
-  delay(wait_time);
-  servoFlush.write(0);
+void wakeUp() {
+  Serial.println("Interrupt fired!");
+  sleep_disable();
+  Serial.println("Sleep disabled... ");
+  detachInterrupt(digitalPinToInterrupt(LDR_PIN));
+  Serial.println("LDR PIN detached... ");
+}
+
+boolean isEnvironmentDark() {
+  return digitalRead(LDR_PIN) == LOW;
+}
+
+boolean hand_detected() {
+  return distance_less_than_given_centimeter(5);
 }
 
 boolean distance_less_than_given_centimeter(int max_distance) {
   long duration, distance;
   digitalWrite(DISTANCE_TRIG_PIN, LOW);
-  delayMicroseconds(2);
+  delayMicroseconds(5);
   digitalWrite(DISTANCE_TRIG_PIN, HIGH);
   delayMicroseconds(10);
   digitalWrite(DISTANCE_TRIG_PIN, LOW);
   duration = pulseIn(DISTANCE_ECHO_PIN, HIGH);
-  distance = (duration/2) / 29.1;
+  Serial.print("Duration : ");
+  Serial.println(duration);
+  distance = duration / 2 / 29.1;
+  if (distance > 200)
+    distance = 200;
+  Serial.print("Distance : ");
+  Serial.println(distance);
   if (distance > 0 && distance < max_distance) { // in centimeters
-    digitalWrite(LED_ACTIVE,HIGH);
-    digitalWrite(LED_PASSIVE,LOW);
+    digitalWrite(LED_ACTIVE_PIN, HIGH);
+    digitalWrite(LED_PASSIVE_PIN, LOW);
     return true;
   } else {
-    digitalWrite(LED_ACTIVE,LOW);
-    digitalWrite(LED_PASSIVE,HIGH);
+    digitalWrite(LED_ACTIVE_PIN, LOW);
+    digitalWrite(LED_PASSIVE_PIN, HIGH);
     return false;
   }
 }
