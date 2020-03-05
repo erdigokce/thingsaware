@@ -1,63 +1,71 @@
-:Author: erdigokce
-:Email: {AuthorEmail}
+:Author: Erdi Gökce
+:Email: erdi.gokce@gmail.com
 :Date: 19/02/2020
-:Revision: version#
+:Revision: 1.0
 :License: Public Domain
 
-= Project: {Project}
+= Project: Toilet Reservoir Flusher
 
-Describe your project
+This project is aimed to transform a conventional embedded reservoir flusher (with triggering button) to a more smart, hands-free, arduino based, low powered flusher system.
+In this codebase you will find the source code of the main program and the schematics of the system.
 
 == Step 1: Installation
-Please describe the steps to install this project.
+This section covers compiling code and load into Arduino.
 
-For example:
-
-1. Open this file
-2. Edit as you like
-3. Release to the World!
+1. Clone or download as zip this project to your local (See https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository[here] how to clone a project in GitHub).
+2. Open the h4f_reservoir_flusher.ino file with the https://www.arduino.cc/en/main/software[Arduino IDE].
+3. Adjust the delay/waiting timings if needed. They are defined as https://www.cprogramming.com/reference/preprocessor/define.html[preprocessor directives].
+4. Compile and load the code to your board (See https://www.arduino.cc/en/main/howto[here] how to do it.).
 
 == Step 2: Assemble the circuit
 
-Assemble the circuit following the diagram layout.png attached to the sketch
+Assemble the circuit following the diagram h4f_reservoir_flusher.fzz attached to the sketch.
 
-== Step 3: Load the code
+== Step 3: Specifications of the device
 
-Upload the code contained in this sketch on to your board
+* 5V working voltage.
+* 9.3 mA in deep sleep mode.
+* 58 mA in IDLE mode.
+* More than 500 mA current is drawn when servo moving.
+* For servo (Tower Pro MG955) specifications please click https://www.electronicoscaldas.com/datasheet/MG995_Tower-Pro.pdf[here].
 
 === Folder structure
 
 ....
- sketch123                => Arduino sketch folder
-  ├── sketch123.ino       => main Arduino file
-  ├── schematics.png      => (optional) an image of the required schematics
-  ├── layout.png          => (optional) an image of the layout
-  └── ReadMe.adoc         => this file
+ h4f_reservoir_flusher			=> Arduino sketch folder
+  ├── h4f_reservoir_flusher.ino	=> main Arduino sketch file
+  ├── h4f_reservoir_flusher.fzz	=> Required schematics (Includes parts, design, PCB)
+  ├── sketch.json				=> Online Arduino IDE generated file
+  └── ReadMe.adoc				=> this file
 ....
 
 === License
-This project is released under a {License} License.
+This project is released under a GNU General Public License v3.0 License.
 
 === Contributing
-To contribute to this project please contact erdigokce https://id.arduino.cc/erdigokce
+To contribute to this project please follow the steps below: 
+
+1. Create a feature branch from master.
+2. Apply your developments.
+3. Create a pull request with explanation to master branch. 
+4. For more please contact to erdi.gokce@gmail.com with the prefix of "H4A [Contribute]" prefix in the mail subject.
 
 === BOM
 Add the bill of the materials you need for this project.
 
 |===
-| ID | Part name      | Part number | Quantity
-| R1 | 10k Resistor   | 1234-abcd   | 10
-| L1 | Red LED        | 2345-asdf   | 5
-| A1 | Arduino Zero   | ABX00066    | 1
+| ID | Part name                			| Quantity
+| R1 | 470 Ohm 1/4 W Resistor   			| 2
+| L1 | Red LED                  			| 1
+| L2 | Green LED							| 1
+| S1 | Tower Pro Servo MG995				| 1
+| R2 | LDR									| 1
+| A1 | Arduino UNO R3						| 1
+| W1 | Male-Male Jumper Wires				| 10
+| B1 | Breadboard							| 1
+| PW | External Power Supply 5V 1A (min)	| 1 
 |===
 
 
 === Help
-This document is written in the _AsciiDoc_ format, a markup language to describe documents.
-If you need help you can search the http://www.methods.co.nz/asciidoc[AsciiDoc homepage]
-or consult the http://powerman.name/doc/asciidoc[AsciiDoc cheatsheet]
-
-
-9.3 mA in deep sleep mode.
-58 mA in IDLE mode.
-More than 500 mA current drawn when servo moving.
+For any kind of help please contact to erdi.gokce@gmail.com with the prefix of "H4A [Help]" prefix in the mail subject.

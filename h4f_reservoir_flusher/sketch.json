@@ -1,9 +1,9 @@
 {
   "cpu": {
-    "fqbn": "arduino:avr:nano:cpu=atmega328",
-    "name": "Arduino Nano",
+    "fqbn": "arduino:avr:uno:cpu=atmega328",
+    "name": "Arduino UNO",
     "type": "serial"
   },
   "secrets": [],
-  "included_libs": []
+  "included_libs": ["Servo.h", "avr/sleep.h"]
 }
