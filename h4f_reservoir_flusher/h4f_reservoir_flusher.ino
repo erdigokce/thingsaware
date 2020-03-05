@@ -1,5 +1,6 @@
 #include <Servo.h>
 #include <avr/sleep.h>
+#define FLUSH_TIMOUT_IN_MILLIS 3500
 #define SERVO_DATA_PIN 9
 #define DISTANCE_TRIG_PIN 6
 #define DISTANCE_ECHO_PIN 5
@@ -7,6 +8,7 @@
 #define LED_PASSIVE_PIN 11
 #define LED_ACTIVE_PIN 10
 #define SERVO_INITIAL_DEGREE 90
+#define SERVO_PUSHDOWN_DEGREE 100
 #define SERVO_FINAL_DEGREE 30
 
 Servo servoFlush;
@@ -42,14 +44,12 @@ void loop() {
     Serial.print("Hand detected? : ");
     Serial.println(is_hand_detected == 0 ? "No" : "Yes");
     if (is_hand_detected) {
-      servoFlush.write(SERVO_FINAL_DEGREE);
-      Serial.print("Final degree : ");
-      Serial.println(SERVO_FINAL_DEGREE);
-      delay(5000);
-      Serial.print("Initial degree : ");
-      servoFlush.write(SERVO_INITIAL_DEGREE);
-      Serial.println(SERVO_INITIAL_DEGREE);
-      delay(1000);
+      pullLeverUp();
+      delay(FLUSH_TIMOUT_IN_MILLIS);
+      pushLeverDown();
+      delay(500);
+      setInitialPosition();
+      delay(500);
     }
   }
   delay(500);
@@ -95,4 +95,22 @@ boolean distance_less_than_given_centimeter(int max_distance) {
     digitalWrite(LED_PASSIVE_PIN, HIGH);
     return false;
   }
+}
+
+void pullLeverUp() {
+  servoFlush.write(SERVO_FINAL_DEGREE);
+  Serial.print("Final degree : ");
+  Serial.println(SERVO_FINAL_DEGREE);
+}
+
+void pushLeverDown() {
+  servoFlush.write(SERVO_PUSHDOWN_DEGREE);
+  Serial.print("Push Down degree : ");
+  Serial.println(SERVO_PUSHDOWN_DEGREE);
+}
+
+void setInitialPosition() {
+  Serial.print("Initial degree : ");
+  servoFlush.write(SERVO_INITIAL_DEGREE);
+  Serial.println(SERVO_INITIAL_DEGREE);
 }
