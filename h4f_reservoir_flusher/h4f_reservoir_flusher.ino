@@ -7,9 +7,9 @@
 #define LDR_PIN 2
 #define LED_PASSIVE_PIN 11
 #define LED_ACTIVE_PIN 10
-#define SERVO_INITIAL_DEGREE 90
-#define SERVO_PUSHDOWN_DEGREE 100
-#define SERVO_FINAL_DEGREE 30
+#define SERVO_INITIAL_DEGREE 30
+#define SERVO_PUSHDOWN_DEGREE 20
+#define SERVO_FINAL_DEGREE 90
 
 Servo servoFlush;
 
@@ -68,7 +68,7 @@ boolean isEnvironmentDark() {
 }
 
 boolean hand_detected() {
-  return distance_less_than_given_centimeter(5);
+  return distance_less_than_given_centimeter(10);
 }
 
 boolean distance_less_than_given_centimeter(int max_distance) {
