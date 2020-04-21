@@ -32,22 +32,30 @@ Assemble the circuit following the diagram h4f_reservoir_flusher.fzz attached to
 
 == Step 4: Calculating the value of R2 (Pull-Down Resistor for LDR)
 
-Let's consider the LDR sensor as a switch in out diagram. As environment gets darker, the LDR's resistance will raise up to mega ohms. That means it will behave like an open switch. 
+Let's consider the LDR sensor as a switch in our diagram. As environment gets darker, the LDR's resistance will raise up to mega ohms. That means it will behave like an open switch. 
 In this case we need to read digital '0' value from the node between R2 resistor and LDR. Thus voltage drop on R2 resistor must be 0V, in other words it must be connected to ground (GND).
 
 This behaviour of the R2 resistor is called as "pull-down resistor". General definition: If a voltage drop is 0V on a resistor in an "open circuit", the resistor is called as "pull-down resistor".
 
-It is crusial to determine the value of R2. Because it specifies when the Arduino will go the sleep mode and when it will wake up. In order to sleep Arduino PIN 2 has to be digital 0 and to wake it up PIN 2 has to be digital 1, obviously.
+It is crucial to determine the value of R2. Because it specifies when the Arduino will go the sleep mode and when it will wake up. In order to sleep Arduino PIN 2 has to be digital 0 and to wake it up PIN 2 has to be digital 1, obviously.
 But LDR resistance is a continuous value, in other words it produces an analog signal in the node between LDR and R2. PIN 2 is a digital pin on Arduino UNO boards which is connected to the node in our diagram. However it is easy to read digital value from the node.
 3V is the low-limit threshold for digital 1 value. That means 2.9V is digital 0. So with the Ohm's Law we can calculate the required R2 value. For achiving this, requirement is to know the LDR resistance values dark and enlightened environments.
 
-For example, in my case LDR resistance around between 300kOhms - 400kOhms in the dark and it was around 10kOhms to 20kOhms when the lights on (I have measured these values where I will use this sensor). For the dark environment values I have chosen the low-limit to make it more light tolerant.
+For example, in my case LDR resistance around between 300kOhms - 400kOhms in bright and it was around 500kOhms to 4MOhms in the dark (I have measured these values where I will use this sensor). For the bright environment values I have chosen the low-limit to make it more shadow tolerant.
 So if I have chosen 470kOhms for R2 resistance voltage drops will be like following:
 
+In the bright:
 |===
 |	ID	|	Resistance	|	Voltage Drop
 |	R2	|	470kOhms 	|	3.052V 
 |	LDR	|	300kOhms 	|	1.948V
+|===
+
+In the dark:
+|===
+|	ID	|	Resistance	|	Voltage Drop
+|	R2	|	470kOhms 	|	2.423V 
+|	LDR	|	500kOhms 	|	2.577V
 |===
 
 === Folder structure
