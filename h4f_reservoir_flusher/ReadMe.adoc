@@ -15,7 +15,8 @@ This section covers compiling code and load into Arduino.
 1. Clone or download as zip this project to your local (See https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository[here] how to clone a project in GitHub).
 2. Open the h4f_reservoir_flusher.ino file with the https://www.arduino.cc/en/main/software[Arduino IDE].
 3. Adjust the delay/waiting timings if needed. They are defined as https://www.cprogramming.com/reference/preprocessor/define.html[preprocessor directives].
-4. Compile and load the code to your board (See https://www.arduino.cc/en/main/howto[here] how to do it.).
+4. Calculate the resistence value of R2 according to specifications of your LDR. (See Step 4)
+5. Compile and load the code to your board (See https://www.arduino.cc/en/main/howto[here] how to do it.).
 
 == Step 2: Assemble the circuit
 
@@ -28,6 +29,26 @@ Assemble the circuit following the diagram h4f_reservoir_flusher.fzz attached to
 * 58 mA in IDLE mode.
 * More than 500 mA current is drawn when servo moving.
 * For servo (Tower Pro MG955) specifications please click https://www.electronicoscaldas.com/datasheet/MG995_Tower-Pro.pdf[here].
+
+== Step 4: Calculating the value of R2 (Pull-Down Resistor for LDR)
+
+Let's consider the LDR sensor as a switch in out diagram. As environment gets darker, the LDR's resistance will raise up to mega ohms. That means it will behave like an open switch. 
+In this case we need to read digital '0' value from the node between R2 resistor and LDR. Thus voltage drop on R2 resistor must be 0V, in other words it must be connected to ground (GND).
+
+This behaviour of the R2 resistor is called as "pull-down resistor". General definition: If a voltage drop is 0V on a resistor in an "open circuit", the resistor is called as "pull-down resistor".
+
+It is crusial to determine the value of R2. Because it specifies when the Arduino will go the sleep mode and when it will wake up. In order to sleep Arduino PIN 2 has to be digital 0 and to wake it up PIN 2 has to be digital 1, obviously.
+But LDR resistance is a continuous value, in other words it produces an analog signal in the node between LDR and R2. PIN 2 is a digital pin on Arduino UNO boards which is connected to the node in our diagram. However it is easy to read digital value from the node.
+3V is the low-limit threshold for digital 1 value. That means 2.9V is digital 0. So with the Ohm's Law we can calculate the required R2 value. For achiving this, requirement is to know the LDR resistance values dark and enlightened environments.
+
+For example, in my case LDR resistance around between 300kOhms - 400kOhms in the dark and it was around 10kOhms to 20kOhms when the lights on (I have measured these values where I will use this sensor). For the dark environment values I have chosen the low-limit to make it more light tolerant.
+So if I have chosen 470kOhms for R2 resistance voltage drops will be like following:
+
+|===
+|	ID	|	Resistance	|	Voltage Drop
+|	R2	|	470kOhms 	|	3.052V 
+|	LDR	|	300kOhms 	|	1.948V
+|===
 
 === Folder structure
 
@@ -43,23 +64,19 @@ Assemble the circuit following the diagram h4f_reservoir_flusher.fzz attached to
 This project is released under a GNU General Public License v3.0 License.
 
 === Contributing
-To contribute to this project please follow the steps below: 
-
-1. Create a feature branch from master.
-2. Apply your developments.
-3. Create a pull request with explanation to master branch. 
-4. For more please contact to erdi.gokce@gmail.com with the prefix of "H4A [Contribute]" prefix in the mail subject.
+To contribute to this project please just open a pull request with a comprehensive description.
 
 === BOM
 Add the bill of the materials you need for this project.
 
 |===
 | ID | Part name                			| Quantity
-| R1 | 470 Ohm 1/4 W Resistor   			| 2
+| P1 | 470 Ohm 1/4 W Resistor (R3, R4) 		| 2
+| P2 | 470 kOhm 1/4 W Resistor (R2) 		| 1
 | L1 | Red LED                  			| 1
 | L2 | Green LED							| 1
 | S1 | Tower Pro Servo MG995				| 1
-| R2 | LDR									| 1
+| S2 | LDR	(300k in dark - 10 secs)		| 1
 | A1 | Arduino UNO R3						| 1
 | W1 | Male-Male Jumper Wires				| 10
 | B1 | Breadboard							| 1
@@ -69,4 +86,4 @@ Add the bill of the materials you need for this project.
 
 
 === Help
-For any kind of help please contact to erdi.gokce@gmail.com with the prefix of "H4A [Help]" prefix in the mail subject.
+For any kind of help please join https://homes4future.slack.com/archives/C012FHL42NQ[our slack channel].
