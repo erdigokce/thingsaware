@@ -54,7 +54,8 @@ void connectWiFi() {
 }
 
 void configureMDNS() {
-  if (MDNS.begin(MDNS_HOSTNAME)) { // Start the mDNS responder for esp8266.local
+  if (MDNS.begin(MDNS_HOSTNAME, WiFi.localIP())) { // Start the mDNS responder for esp8266.local
+    MDNS.addService("http", "tcp", 80);
     DEBUG_OUTPUT.println("mDNS responder started");
   } else {
     DEBUG_OUTPUT.println("Error setting up MDNS responder!");
