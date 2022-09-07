@@ -7,6 +7,7 @@
 #include <WiFiClient.h>
 #include <ESP8266mDNS.h>
 #include <ESP8266WebServer.h>
+#include <FS.h>
 
 #ifndef CONNECTION_WAIT_MILLIS
 #define CONNECTION_WAIT_MILLIS 5000
@@ -21,7 +22,7 @@
 #endif
 
 #ifndef MDNS_HOSTNAME
-#define MDNS_HOSTNAME "thingaware_client.local"
+#define MDNS_HOSTNAME "thingsaware.local"
 #endif
 
 #ifndef APSSID
