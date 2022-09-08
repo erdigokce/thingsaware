@@ -1,5 +1,6 @@
+#include <Arduino.h>
 #include "ta_pet_feeder.h"
-#include "ta_debugger.h"
+#include <ta_debugger.h>
 
 ESP8266WebServer server(80);
 

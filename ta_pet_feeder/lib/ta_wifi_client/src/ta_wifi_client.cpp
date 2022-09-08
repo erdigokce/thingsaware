@@ -1,11 +1,12 @@
 #include <Arduino.h>
-#include "ta_wifi_client.h"
-#include "ta_debugger.h"
+#include <ta_wifi_client.h>
+#include <ta_debugger.h>
 
 const int led = LED_BUILTIN;
 const char *ap_ssid = APSSID;
 
 int address = 0;
+boolean routerSaved = false;
 String ssid;
 String password;
 
@@ -34,11 +35,10 @@ void connectWiFi() {
     DEBUG_OUTPUT.println("WiFi disconnected.");
     MDNS.notifyAPChange();
     configureAccessPoint();
-    unsigned long now = millis();
-    while (!(ssid && password) && millis() - now > WIFI_INFO_RETRIEVAL_TIMEOUT) {
+    while (!routerSaved && WIFI_INFO_RETRIEVAL_TIMEOUT > millis()) {
       ap_server.handleClient();
       MDNS.update();
-      DEBUG_OUTPUT.print("_.");
+      delay(10);
     }
     disconnectAccessPoint();
     WiFi.begin(ssid, password);
@@ -50,11 +50,12 @@ void connectWiFi() {
   DEBUG_OUTPUT.print("IP address: ");
   DEBUG_OUTPUT.println(WiFi.localIP());
   EEPROM.end();
-  DEBUG_OUTPUT.print("EEPROM connection is closed.");
+  DEBUG_OUTPUT.println("EEPROM connection is closed.");
 }
 
 void configureMDNS() {
-  if (MDNS.begin(MDNS_HOSTNAME)) { // Start the mDNS responder for esp8266.local
+  if (MDNS.begin(MDNS_HOSTNAME, WiFi.localIP())) { // Start the mDNS responder for esp8266.local
+    MDNS.addService("http", "tcp", 80);
     DEBUG_OUTPUT.println("mDNS responder started");
   } else {
     DEBUG_OUTPUT.println("Error setting up MDNS responder!");
@@ -110,30 +111,34 @@ void handleNotFound() {
 
 void handleRoot() {
   digitalWrite(led, 1);
+  DEBUG_OUTPUT.println("Handling root request");
   if (!handleFileRead("/ap_router_login.html")) {
     handleNotFound();
   }
-  MDNS.update();
   digitalWrite(led, 0);
 }
 
 void handleSaveRouter() {
   digitalWrite(led, 1);
+  DEBUG_OUTPUT.println("Handling save router request");
   if (!isHttpMethodAllowed(ap_server, HTTP_POST)) return;
   ssid = ap_server.hasArg("ssid") ? ap_server.arg("ssid") : "";
   password = ap_server.hasArg("password") ? ap_server.arg("password") : "";
 
+  address = 0;
   EEPROM.put(address, ssid);
   address += sizeof(ssid);
   EEPROM.put(address, password);
   EEPROM.commit();
 
   ap_server.send(200, "text/plain", "ssid : '" + ssid + "' password : '" + password + "'. It is saved to EEPROM.");
+  delay(COMMAND_WAIT_MILLIS);
   digitalWrite(led, 0);
+  routerSaved = true;
 }
 
 void configureAccessPoint() {
-  DEBUG_OUTPUT.print("Configuring access point...");
+  DEBUG_OUTPUT.println("Configuring access point...");
   WiFi.softAP(ap_ssid);
   DEBUG_OUTPUT.print("AP IP address: ");
   DEBUG_OUTPUT.println(WiFi.softAPIP());
@@ -146,8 +151,8 @@ void configureAccessPoint() {
 }
 
 void disconnectAccessPoint() {
-  DEBUG_OUTPUT.print("Disconnecting access point...");
+  DEBUG_OUTPUT.println("Disconnecting access point...");
   ap_server.close();
   WiFi.softAPdisconnect(true);
-  DEBUG_OUTPUT.print("Disconnected from access point.");
+  DEBUG_OUTPUT.println("Disconnected from access point.");
 }
