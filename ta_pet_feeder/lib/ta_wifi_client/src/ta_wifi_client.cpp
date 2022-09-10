@@ -152,6 +152,7 @@ void configureAccessPoint() {
 
 void disconnectAccessPoint() {
   DEBUG_OUTPUT.println("Disconnecting access point...");
+  SPIFFS.end();
   ap_server.close();
   WiFi.softAPdisconnect(true);
   DEBUG_OUTPUT.println("Disconnected from access point.");

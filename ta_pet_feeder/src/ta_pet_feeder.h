@@ -3,8 +3,8 @@
 
 #include <ta_wifi_client.h>
 
+void rollForGivenPortion(uint8_t portion);
 void handleRoll();
-void handleSetSchedule();
 void handleGetResidual();
 
 #endif //ta_pet_feeder_h
