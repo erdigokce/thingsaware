@@ -75,7 +75,7 @@ void handleGetResidual() {
 }
 
 void rollForGivenPortion(uint8_t portion) {
-  analogWrite(MOTOR_PIN, 512);
+  analogWrite(MOTOR_PIN, 48);
   delay(portion * 3000);
   analogWrite(MOTOR_PIN, 0);
 }

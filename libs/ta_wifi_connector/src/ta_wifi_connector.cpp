@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <ta_wifi_client.h>
+#include <ta_wifi_connector.h>
 #include <ta_debugger.h>
 
 const int led = LED_BUILTIN;

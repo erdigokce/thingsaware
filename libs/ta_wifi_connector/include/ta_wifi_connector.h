@@ -1,5 +1,5 @@
-#ifndef ta_wifi_client_h
-#define ta_wifi_client_h
+#ifndef ta_wifi_connector_h
+#define ta_wifi_connector_h
 
 #include <Arduino.h>
 #include <EEPROM.h>
@@ -43,4 +43,4 @@ void configureAccessPoint();
 void configureMDNS();
 void disconnectAccessPoint();
 
-#endif //ta_wifi_client_h
+#endif //ta_wifi_connector_h

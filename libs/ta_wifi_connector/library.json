@@ -1,0 +1,24 @@
+
+{
+  "name": "ta_wifi_connector",
+  "version": "1.0.0",
+  "description": "A \"WiFi\" connection provider library which provides an UI interface to allow credentials.",
+  "keywords": "wifi, network, connection",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/erdigokce/thingaware.git"
+  },
+  "authors":
+  [
+    {
+      "name": "Erdi Gökce",
+      "email": "erdi.gokce@gmail.com",
+      "url": "https://erdigokce.com/",
+      "maintainer": true
+    }
+  ],
+  "license": "MIT",
+  "frameworks": "*",
+  "platforms": "*"
+}
