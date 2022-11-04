@@ -2,12 +2,10 @@ package io.thingsaware.service.health;
 
 import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
-import io.vertx.ext.consul.Check;
 import io.vertx.ext.consul.ServiceOptions;
 import io.vertx.mutiny.ext.consul.ConsulClient;
 import java.time.Duration;
 import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -41,7 +39,7 @@ public class Lifecycle {
     void onStart(@Observes StartupEvent ev) {
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         scheduledServiceRegistration = executorService.schedule(() -> {
-            instanceId = appName + "-" + consulClient.localServicesAndAwait().size();
+            instanceId = appName + "-" + consulClient.healthServiceNodes(appName, true).await().atMost(Duration.ofSeconds(healthChecksMaxAwaitSeconds)).getList().size();
             int port = Integer.parseInt(System.getProperty("quarkus.http.port"));
             ServiceOptions serviceOptions = new ServiceOptions();
             serviceOptions.setId(instanceId);
