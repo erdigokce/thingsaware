@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-10-21T21:49:16.301Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36 OPR/91.0.4516.77" etag="Q7YpPSlT10tEm0xUmHNm" version="20.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-11-05T16:26:24.374Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 OPR/92.0.0.0" etag="YdfAZInYlbtexBWe9tga" version="20.5.1" type="github">
   <diagram id="C0h6jriWAFb2csfehPzT" name="Page-1">
-    <mxGraphModel dx="1266" dy="851" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1266" dy="785" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -8,7 +8,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="gZ-WMbLiCQUDXAqgG7qf-1" value="MQTT Broker&lt;br&gt;(Mosquitto on Docker)" style="outlineConnect=0;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;shape=mxgraph.aws3.mqtt_protocol;fillColor=#5294CF;gradientColor=none;labelPosition=center;" parent="1" vertex="1">
-          <mxGeometry x="410" y="260" width="63" height="66" as="geometry" />
+          <mxGeometry x="400" y="370" width="63" height="66" as="geometry" />
         </mxCell>
         <mxCell id="gZ-WMbLiCQUDXAqgG7qf-6" value="topic: feed-cat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" parent="1" source="gZ-WMbLiCQUDXAqgG7qf-4" target="gZ-WMbLiCQUDXAqgG7qf-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -16,43 +16,52 @@
         <mxCell id="gZ-WMbLiCQUDXAqgG7qf-11" value="topic: schedule-feed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.05;entryY=0.05;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" parent="1" source="gZ-WMbLiCQUDXAqgG7qf-4" target="gZ-WMbLiCQUDXAqgG7qf-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="260" y="263" />
-              <mxPoint x="260" y="263" />
+              <mxPoint x="250" y="373" />
+              <mxPoint x="250" y="373" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="u-eq03Bs4xKIGnjtoeEd-5" value="topic: remaining-food" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.05;entryY=0.91;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" parent="1" source="gZ-WMbLiCQUDXAqgG7qf-4" target="gZ-WMbLiCQUDXAqgG7qf-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="260" y="320" />
-              <mxPoint x="260" y="320" />
+              <mxPoint x="250" y="430" />
+              <mxPoint x="250" y="430" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="gZ-WMbLiCQUDXAqgG7qf-4" value="Cat Feeder IoT Device" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.generic;fillColor=#5294CF;gradientColor=none;" parent="1" vertex="1">
-          <mxGeometry x="130" y="253.25" width="79.5" height="79.5" as="geometry" />
+          <mxGeometry x="120" y="363.25" width="79.5" height="79.5" as="geometry" />
         </mxCell>
-        <mxCell id="6FsYevEU8R35O0Jzz6Nx-3" value="Time Series Database" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4D72F3;gradientDirection=north;fillColor=#3334B9;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.timestream;" parent="1" vertex="1">
-          <mxGeometry x="411.5" y="410" width="60" height="60" as="geometry" />
+        <mxCell id="6FsYevEU8R35O0Jzz6Nx-3" value="Time-Series Database" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#4D72F3;gradientDirection=north;fillColor=#3334B9;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.timestream;" parent="1" vertex="1">
+          <mxGeometry x="401.5" y="520" width="60" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="6FsYevEU8R35O0Jzz6Nx-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=none;startFill=0;" parent="1" source="6FsYevEU8R35O0Jzz6Nx-6" target="6FsYevEU8R35O0Jzz6Nx-7" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="6FsYevEU8R35O0Jzz6Nx-6" value="Pet Feeder Service" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;labelPosition=center;" parent="1" vertex="1">
-          <mxGeometry x="539.5" y="120" width="58" height="58" as="geometry" />
-        </mxCell>
-        <mxCell id="6FsYevEU8R35O0Jzz6Nx-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=none;startFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="6FsYevEU8R35O0Jzz6Nx-7" target="6FsYevEU8R35O0Jzz6Nx-3" edge="1">
+        <mxCell id="6FsYevEU8R35O0Jzz6Nx-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;" parent="1" source="6FsYevEU8R35O0Jzz6Nx-6" target="KIShqJhSHBPQEm4KdA0Y-2" edge="1">
           <mxGeometry relative="1" as="geometry">
+            <mxPoint x="558.75" y="368" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="569" y="440" />
+              <mxPoint x="559" y="310" />
+              <mxPoint x="560" y="310" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="6FsYevEU8R35O0Jzz6Nx-13" value="Events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.95;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" parent="1" source="6FsYevEU8R35O0Jzz6Nx-7" target="gZ-WMbLiCQUDXAqgG7qf-1" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="6FsYevEU8R35O0Jzz6Nx-6" value="Pet Feeder Service" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ecs;labelPosition=center;" parent="1" vertex="1">
+          <mxGeometry x="530.5" y="230" width="58" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="6FsYevEU8R35O0Jzz6Nx-7" value="Service Gateway" style="outlineConnect=0;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=left;html=1;shape=mxgraph.aws3.api_gateway;fillColor=#D9A741;gradientColor=none;labelPosition=right;" parent="1" vertex="1">
-          <mxGeometry x="540" y="258" width="57.5" height="70" as="geometry" />
+        <mxCell id="6FsYevEU8R35O0Jzz6Nx-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=none;startFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="KIShqJhSHBPQEm4KdA0Y-2" target="6FsYevEU8R35O0Jzz6Nx-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="550" />
+            </Array>
+            <mxPoint x="558.75" y="438" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6FsYevEU8R35O0Jzz6Nx-13" value="Events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.95;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="KIShqJhSHBPQEm4KdA0Y-2" target="gZ-WMbLiCQUDXAqgG7qf-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="530" y="403" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KIShqJhSHBPQEm4KdA0Y-2" value="Kafka Connector" style="shape=image;verticalLabelPosition=middle;labelBackgroundColor=default;verticalAlign=middle;aspect=fixed;imageAspect=0;image=https://cf.appdrag.com/dashboard-openvm-clo-b2d42c/uploads/Kafka-gVk5-FVv1.png;labelPosition=right;align=left;" vertex="1" parent="1">
+          <mxGeometry x="529.5" y="373" width="60" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
