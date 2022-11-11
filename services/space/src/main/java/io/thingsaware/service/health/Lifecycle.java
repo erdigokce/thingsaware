@@ -74,7 +74,7 @@ public class Lifecycle {
         CheckOptions checkOptions = new CheckOptions();
         checkOptions.setId(serviceOptions.getId() + "-tcp-healthcheck");
         checkOptions.setName("TCP Health Check");
-        checkOptions.setTcp(host + ":" + serviceOptions.getPort());
+        checkOptions.setTcp(host + ":"+ serviceOptions.getPort());
         checkOptions.setInterval(healthChecksMaxAwaitDuration);
         checkOptions.setStatus(CheckStatus.WARNING);
         return checkOptions;
