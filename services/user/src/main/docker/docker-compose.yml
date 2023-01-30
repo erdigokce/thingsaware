@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  app:
+    build: ./Dockerfile.jvm
+    restart: always
+    ports:
+      - "8080:8080"
+  db:
+    image: arm64v8/postgres:11.18-bullseye
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - user-db:/var/lib/postgresql/data
+
+volumes:
+  user-db:
