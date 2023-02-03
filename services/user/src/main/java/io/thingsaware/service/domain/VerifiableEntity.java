@@ -6,8 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,6 +13,5 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class VerifiableEntity extends PanacheEntity {
     @Column(name = "verify_datetime")
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime verifyDatetime;
 }

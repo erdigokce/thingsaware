@@ -1,7 +1,5 @@
 package io.thingsaware.service.impl;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import io.quarkus.panache.common.Parameters;
 import io.thingsaware.service.UserService;
 import io.thingsaware.service.domain.Email;
 import io.thingsaware.service.domain.Password;

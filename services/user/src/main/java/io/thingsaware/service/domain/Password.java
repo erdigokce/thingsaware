@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,7 +19,6 @@ public class Password extends VerifiableEntity {
     private String passwordValue;
 
     @Column(name = "expiry_datetime")
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime expiryDatetime;
 
     public Password(String password) {
