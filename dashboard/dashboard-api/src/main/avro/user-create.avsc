@@ -1,0 +1,15 @@
+{
+  "namespace": "io.thingsaware.dashboard.model",
+  "type": "record",
+  "name": "UserCreateMessage",
+  "fields": [
+    {
+      "name": "emailAddress",
+      "type": "string"
+    },
+    {
+      "name": "password",
+      "type": "string"
+    }
+  ]
+}

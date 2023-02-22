@@ -1,10 +1,10 @@
 package io.thingsaware.service.impl;
 
+import io.thingsaware.dashboard.model.UserCreateMessage;
 import io.thingsaware.service.UserService;
 import io.thingsaware.service.domain.Email;
 import io.thingsaware.service.domain.Password;
 import io.thingsaware.service.domain.User;
-import io.thingsaware.service.model.UserCreateMessage;
 import io.thingsaware.service.model.error.UserCreationException;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void validateAndCreate(UserCreateMessage userCreateMessage) throws UserCreationException {
-        String emailAddress = userCreateMessage.emailAddress();
+        String emailAddress = userCreateMessage.getEmailAddress().toString();
         if (!Pattern.compile(EMAIL_REGEX).matcher(emailAddress).matches()) {
             throw new UserCreationException("Email '%s' has invalid format.".formatted(emailAddress));
         }
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         }
         User newUser = new User();
         Email newEmail = new Email(emailAddress);
-        Password newPassword = new Password(userCreateMessage.password());
+        Password newPassword = new Password(userCreateMessage.getPassword().toString());
         newUser.setEmail(newEmail);
         newUser.setPassword(newPassword);
         newUser.persist();

@@ -1,6 +1,6 @@
 package io.thingsaware.service;
 
-import io.thingsaware.service.model.UserCreateMessage;
+import io.thingsaware.dashboard.model.UserCreateMessage;
 import io.thingsaware.service.model.error.UserCreationException;
 
 public interface UserService {
