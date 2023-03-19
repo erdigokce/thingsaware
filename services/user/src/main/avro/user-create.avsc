@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "UserCreateMessage",
+  "namespace": "io.thingsaware.kafka.model",
+  "fields": [
+    {
+      "name": "emailAddress",
+      "type": "string"
+    },
+    {
+      "name": "password",
+      "type": "string"
+    }
+  ]
+}
