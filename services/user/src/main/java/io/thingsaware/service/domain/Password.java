@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
@@ -15,14 +17,19 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "password")
 public class Password extends VerifiableEntity {
-    @Column(name = "password_value", nullable = false, unique = true)
-    private String passwordValue;
 
-    @Column(name = "expiry_datetime")
-    private LocalDateTime expiryDatetime;
+	@Id
+	@GeneratedValue
+	public Long id;
 
-    public Password(String password) {
-        super();
-        this.passwordValue = password;
-    }
+	@Column(name = "password_value", nullable = false, unique = true)
+	private String passwordValue;
+
+	@Column(name = "expiry_datetime")
+	private LocalDateTime expiryDatetime;
+
+	public Password(String password) {
+		super();
+		this.passwordValue = password;
+	}
 }

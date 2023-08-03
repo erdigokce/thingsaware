@@ -1,6 +1,5 @@
 package io.thingsaware.service.domain;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @MappedSuperclass
-public class VerifiableEntity extends PanacheEntity {
+public class VerifiableEntity {
+
     @Column(name = "verify_datetime")
     private LocalDateTime verifyDatetime;
+
 }

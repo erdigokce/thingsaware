@@ -1,11 +1,13 @@
 package io.thingsaware.service;
 
-import io.thingsaware.service.model.error.UserCreationException;
-import io.thingsaware.kafka.model.UserCreateMessage;
+import io.thingsaware.service.model.UserCreationRequest;
+import io.thingsaware.service.model.dto.UserDTO;
+import io.thingsaware.service.model.error.EmailValidationException;
+import io.thingsaware.service.model.error.PasswordValidationException;
 
 public interface UserService {
 
-    void validateAndCreate(UserCreateMessage userCreateMessage) throws UserCreationException;
+    void create(UserCreationRequest userValidationRequest) throws EmailValidationException, PasswordValidationException;
 
-    boolean isPasswordExpired(long userId);
+    UserDTO fetchUser(String userId);
 }
