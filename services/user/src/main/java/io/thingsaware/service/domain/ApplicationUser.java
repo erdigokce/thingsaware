@@ -10,15 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "application_user")
+public class ApplicationUser {
 	@Id
 	@GeneratedValue
-	public Long id;
+	public UUID id;
 
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "email_id", nullable = false, unique = true)
